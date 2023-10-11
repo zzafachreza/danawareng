@@ -35,6 +35,7 @@ import GameGambar2 from './GameGambar2';
 import GameGambar3 from './GameGambar3';
 import GameGambar4 from './GameGambar4';
 import Kategori from './Kategori';
+import Add from './Add';
 
 
 
@@ -42,6 +43,7 @@ import Kategori from './Kategori';
 export {
   Splash,
   Home,
+  Add,
   Login,
   Register,
   Account,

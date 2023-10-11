@@ -38,6 +38,7 @@ import {
   GameGambar3,
   GameGambar4,
   Kategori,
+  Add,
 
 
 
@@ -86,6 +87,8 @@ export default function Router() {
 
 
       <Stack.Screen name="Kategori" component={Kategori} options={{ headerShown: false }} />
+
+      <Stack.Screen name="Add" component={Add} options={{ headerShown: false }} />
 
 
 
