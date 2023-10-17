@@ -32,10 +32,7 @@ export default function Kategori({ navigation, route }) {
 
     const __renderItem = ({ item }) => {
         return (
-            <TouchableWithoutFeedback onPress={() => {
-                navigation.navigate('Add', item);
-                console.log(item)
-            }}>
+            <TouchableWithoutFeedback>
                 <View style={{
                     flex: 1,
                     margin: 10,

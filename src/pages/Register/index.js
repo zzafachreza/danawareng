@@ -155,7 +155,7 @@ export default function Register({ navigation }) {
                         fontFamily: fonts.primary[800],
                         color: colors.secondary,
 
-                    }}>Welcome</Text>
+                    }}>Daftar</Text>
                 </View>
 
 
@@ -165,8 +165,8 @@ export default function Register({ navigation }) {
                     borderRadius: 20,
                 }}>
                     <MyInput
-                        placeholder="Enter Full name"
-                        label="Fullname"
+                        placeholder="Masukan nama lengkap"
+                        label="Nama Lengkap"
                         iconname="person-outline"
                         value={data.nama_lengkap}
                         onChangeText={value =>
@@ -178,9 +178,9 @@ export default function Register({ navigation }) {
                     />
                     <MyGap jarak={10} />
                     <MyInput
-                        placeholder="Enter username"
-                        label="Username"
-                        iconname="at"
+                        placeholder="Masukan jabatan"
+                        label="Jabatan"
+                        iconname="ribbon"
                         value={data.username}
                         onChangeText={value =>
                             setData({
@@ -193,8 +193,8 @@ export default function Register({ navigation }) {
 
 
                     <MyInput
-                        placeholder="Enter Phone"
-                        label="phone"
+                        placeholder="Masukan nomor telepon"
+                        label="Telepon"
                         iconname="call-outline"
                         keyboardType="phone-pad"
                         value={data.telepon}
@@ -216,8 +216,8 @@ export default function Register({ navigation }) {
 
                     <MyGap jarak={10} />
                     <MyInput
-                        placeholder="Enter Password"
-                        label="Password"
+                        placeholder="Masukan kata sandi"
+                        label="Kata Sandi"
                         iconname="lock-closed-outline"
                         secureTextEntry
                         value={data.password}
@@ -232,8 +232,8 @@ export default function Register({ navigation }) {
                     <MyInput
                         borderColor={sama ? colors.border : colors.danger}
                         borderWidth={sama ? 1 : 1}
-                        placeholder="Re-enter Password"
-                        label="Re-enter Password"
+                        placeholder="Masukan ulang kata sandi"
+                        label="Masukan ulang kata sandi"
                         iconname="lock-closed-outline"
                         secureTextEntry
                         value={data.repassword}
@@ -264,7 +264,7 @@ export default function Register({ navigation }) {
                         <MyButton
 
 
-                            title="Register"
+                            title="Daftar"
                             Icons="log-in"
                             onPress={simpan}
                         />
@@ -278,12 +278,12 @@ export default function Register({ navigation }) {
                             fontFamily: fonts.primary[400],
                             textAlign: 'center',
                             color: colors.primary
-                        }}>Already have an account ? <Text style={{
+                        }}>Sudah memiliki Akun ? <Text style={{
                             fontSize: windowWidth / 28,
                             fontFamily: fonts.primary[600],
                             textAlign: 'center',
                             color: colors.border
-                        }}>Login</Text></Text></TouchableOpacity>
+                        }}>Masuk di sini</Text></Text></TouchableOpacity>
                     </>
                 }
 

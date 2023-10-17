@@ -51,7 +51,6 @@ export default function Login({ navigation }) {
             storeData('user', res.data.data);
             navigation.replace('Home')
           }
-
         });
 
 
@@ -97,7 +96,7 @@ export default function Login({ navigation }) {
             fontFamily: fonts.primary[800],
             color: colors.secondary,
 
-          }}>Welcome Back</Text>
+          }}>Selamat datang</Text>
         </View>
 
 
@@ -105,11 +104,11 @@ export default function Login({ navigation }) {
           padding: 20, flex: 1, backgroundColor: colors.white, margin: 20,
           borderRadius: 10,
         }}>
-          <MyInput label="Username" onChangeText={val => setKirim({
+          <MyInput label="Jabatan" onChangeText={val => setKirim({
             ...kirim,
             username: val
           })}
-            iconname="at" placeholder="Masukan username" />
+            iconname="ribbon" placeholder="Masukan jabatan" />
           <MyGap jarak={20} />
           <MyInput
             onChangeText={val => setKirim({
@@ -117,7 +116,7 @@ export default function Login({ navigation }) {
               password: val
             })}
             secureTextEntry={true}
-            label="Password"
+            label="Kata Sandi"
             iconname="lock-closed"
             placeholder="Masukan kata sandi"
           />
@@ -142,7 +141,7 @@ export default function Login({ navigation }) {
 
             <MyButton
               onPress={masuk}
-              title="Log in"
+              title="Masuk"
 
 
               Icons="log-in-outline"
@@ -173,12 +172,12 @@ export default function Login({ navigation }) {
         fontFamily: fonts.primary[400],
         textAlign: 'center',
         color: colors.primary
-      }}>Don’t have an account ? <Text style={{
+      }}>Belum memiliki Akun ? <Text style={{
         fontSize: windowWidth / 28,
         fontFamily: fonts.primary[600],
         textAlign: 'center',
         color: colors.border
-      }}>Sign Up</Text></Text></TouchableOpacity>
+      }}>Daftar disini</Text></Text></TouchableOpacity>
     </>
   );
 }

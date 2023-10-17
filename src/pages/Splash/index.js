@@ -91,7 +91,7 @@ export default function Splash({ navigation }) {
         marginBottom: 20,
         padding: 10,
       }}>
-        <MyButton title="Get Started" onPress={__getStarted} />
+        <MyButton title="Mulai" onPress={__getStarted} />
       </View>
 
     </SafeAreaView>
