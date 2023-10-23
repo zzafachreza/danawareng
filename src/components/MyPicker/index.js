@@ -27,7 +27,7 @@ export default function MyPicker({
           alignItems: 'center',
           paddingVertical: 0,
         }}>
-        <Icon type="ionicon" name={iconname} color={colors.black} size={16} />
+        <Icon type="ionicon" name={iconname} color={colors.primary} size={16} />
         <Text
           style={{
             fontFamily: fonts.secondary[600],
@@ -41,11 +41,12 @@ export default function MyPicker({
       </View>
 
       <View style={{
-        backgroundColor: colors.zavalabs,
+        borderWidth: 1,
+        backgroundColor: colors.white,
         borderRadius: 10,
         marginTop: 5,
         fontFamily: fonts.secondary[600],
-        borderColor: colors.primary,
+        borderColor: colors.border,
       }}>
         <Picker style={{ height: 48, transform: [{ scale: 0.9 }] }}
           selectedValue={value} onValueChange={onValueChange}>
