@@ -11,43 +11,54 @@ import 'intl';
 import 'intl/locale-data/jsonp/en';
 import moment from 'moment';
 import 'moment/locale/id';
+import ProgressCircle from 'react-native-progress-circle'
 
-const MyMenuFeature = ({ img, label, onPress }) => {
-    return (
-        <TouchableWithoutFeedback onPress={onPress}>
-            <View style={{
-                flex: 1,
-                padding: 10,
+export default function Game({ navigation, route }) {
+
+    const [berkas, setberkas] = useState({});
+    const item = route.params;
+
+    const __renderItem = ({ item }) => {
+        return (
+            <TouchableOpacity onPress={() => {
+                Linking.openURL(item.file)
+            }} style={{
+                margin: 5,
                 borderWidth: 1,
                 borderRadius: 10,
-                borderColor: colors.border,
-                marginHorizontal: 10,
-                justifyContent: 'center',
-                alignItems: 'center'
+                overflow: 'hidden',
+                backgroundColor: colors.white,
+
             }}>
-                <Image source={img} style={{
-                    width: windowHeight / 4,
-                    resizeMode: 'contain',
-                    height: windowWidth / 4
-                }} />
                 <Text style={{
                     fontFamily: fonts.secondary[600],
-                    marginVertical: 5,
-                    color: colors.primary
-                }}>{label}</Text>
-            </View>
-        </TouchableWithoutFeedback>
-    )
-}
-
-export default function Game({ navigation }) {
-
-    const [comp, setComp] = useState({});
+                    color: colors.black,
+                    backgroundColor: item.tipe == 'pdf' ? colors.danger : colors.primary,
+                    color: colors.white,
+                    padding: 4,
+                    textAlign: 'center'
+                }}>{item.tipe}</Text>
+                <View style={{
+                    flexDirection: 'row',
+                    padding: 10,
+                }}>
+                    <Text style={{
+                        fontFamily: fonts.secondary[600],
+                        color: colors.black,
+                        flex: 1,
+                    }}>{item.nama_berkas}</Text>
+                    <Icon type='ionicon' name='download-outline' color={colors.danger} />
+                </View>
+            </TouchableOpacity>
+        )
+    }
 
     useEffect(() => {
-        axios.post(apiURL + 'company').then(res => {
+        axios.post(apiURL + 'data_berkas', {
+            kode: route.params.kode
+        }).then(res => {
             console.log(res.data);
-            setComp(res.data.data)
+            setberkas(res.data)
         })
     }, [])
 
@@ -58,55 +69,106 @@ export default function Game({ navigation }) {
             backgroundColor: colors.white,
             position: 'relative'
         }}>
-
             <View style={{
-                position: 'absolute',
-                top: 0,
-                right: 0,
-                zIndex: 0
-            }}>
-                <Image source={require('../../assets/top2.png')} style={{
-                    width: 100,
-                    height: 140,
-                }} />
-            </View>
-            <View style={{
-                height: 120,
-                justifyContent: 'flex-end',
-                alignItems: 'center',
+                padding: 10,
+                backgroundColor: colors.primary,
             }}>
                 <Text style={{
                     fontFamily: fonts.secondary[600],
-                    color: colors.primary,
-                    fontSize: 24,
-                    marginBottom: 5,
-
-                }}>Game</Text>
-                <View style={{
-                    borderBottomWidth: 1,
-                    width: windowWidth / 2,
-                    borderColor: colors.border
-
-                }}></View>
+                    color: colors.white,
+                    fontSize: 15,
+                    textAlign: 'center'
+                }}>{item.judul}</Text>
+            </View>
+            <View style={{
+                padding: 10,
+                backgroundColor: colors.secondary,
+            }}>
+                <Text style={{
+                    fontFamily: fonts.secondary[600],
+                    color: colors.white,
+                    fontSize: 15,
+                    textAlign: 'center'
+                }}>{item.kategori}</Text>
             </View>
 
+
+            {item.kategori == 'Ahli Waris' || item.kategori == 'Riwayat Tanah' ?
+
+                <>
+                    <View style={{
+                        borderWidth: 1,
+                        padding: 10,
+                        borderColor: colors.secondary
+                    }}>
+                        <View style={{
+                            flexDirection: 'row',
+                        }}>
+                            <Text style={{
+                                flex: 1,
+                                fontFamily: fonts.secondary[400],
+                                color: colors.black
+                            }}>Nama</Text>
+
+                            <Text style={{
+                                fontFamily: fonts.secondary[600],
+                                color: colors.black
+                            }}>{item.nama}</Text>
+                        </View>
+                        <View style={{
+                            flexDirection: 'row'
+                        }}>
+                            <Text style={{
+                                flex: 1,
+                                fontFamily: fonts.secondary[400],
+                                color: colors.black
+                            }}>Alamat</Text>
+                            <Text style={{
+                                fontFamily: fonts.secondary[600],
+                                color: colors.black
+                            }}>{item.alamat}</Text>
+                        </View>
+                        <View style={{
+                            flexDirection: 'row'
+                        }}>
+                            <Text style={{
+                                flex: 1,
+                                fontFamily: fonts.secondary[400],
+                                color: colors.black
+                            }}>Nomor Surat</Text>
+                            <Text style={{
+                                fontFamily: fonts.secondary[600],
+                                color: colors.black
+                            }}>{item.nomor_surat}</Text>
+                        </View>
+                    </View>
+                </> : <></>
+            }
+
+
+            <View style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+                margin: 10,
+            }}>
+                <ProgressCircle
+                    percent={item.persen}
+                    radius={40}
+                    borderWidth={5}
+                    color={colors.primary}
+                    shadowColor="#999"
+                    bgColor="#fff"
+                >
+                    <Text style={{ fontSize: 20 }}>{`${item.persen}%`}</Text>
+                </ProgressCircle>
+            </View>
             <View style={{
                 flex: 1,
-                // justifyContent: 'center',
                 padding: 20,
             }}>
-
-                <View style={{
-                    flexDirection: 'row',
-                    marginVertical: 10,
-                }}>
-                    <MyMenuFeature img={require('../../assets/g1.png')} label="Perbedaan Gambar" onPress={() => navigation.navigate('GameGambar')} />
-                    <MyMenuFeature img={require('../../assets/g2.png')} label="Kuis" onPress={() => navigation.navigate('Kuis')} />
-                </View>
-
-
-
-
+                <ScrollView>
+                    <FlatList data={berkas} renderItem={__renderItem} />
+                </ScrollView>
             </View>
         </SafeAreaView>
     )

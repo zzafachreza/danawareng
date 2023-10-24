@@ -12,7 +12,6 @@ import 'intl/locale-data/jsonp/en';
 import moment from 'moment';
 import 'moment/locale/id';
 
-MyInput
 
 
 import ProgressCircle from 'react-native-progress-circle'
@@ -94,7 +93,9 @@ export default function Kategori({ navigation, route }) {
 
                     }}>  {item.nama_lengkap}  </Text>
 
+
                     {item.kategori == 'Ahli Waris' || item.kategori == 'Riwayat Tanah' ?
+
                         <>
                             <View style={{
                                 borderWidth: 1,
@@ -142,6 +143,12 @@ export default function Kategori({ navigation, route }) {
                                     }}>{item.nomor_surat}</Text>
                                 </View>
                             </View>
+                        </> : <></>
+                    }
+
+                    {item.judul == 'Surat' ?
+                        <>
+
                             <View>
                                 <TouchableNativeFeedback onPress={() => {
                                     setOpen(true);
@@ -189,7 +196,24 @@ export default function Kategori({ navigation, route }) {
                         textAlign: 'center',
                         fontSize: 10
                     }}>{moment(item.tanggal).format('dddd, DD MMMM YYYY')} {'\nPukul'} {item.jam} {'WIB'}</Text>
+
+                    <TouchableNativeFeedback onPress={() => navigation.navigate('Game', item)}>
+                        <View style={{
+                            marginTop: 10,
+                            padding: 10,
+                            backgroundColor: colors.secondary,
+                            borderRadius: 20,
+                        }}>
+                            <Text style={{
+                                fontSize: 12,
+                                fontFamily: fonts.secondary[600],
+                                color: colors.white
+                            }}>Lihat Detail</Text>
+                        </View>
+                    </TouchableNativeFeedback>
                 </View>
+
+
             </View>
 
         )
