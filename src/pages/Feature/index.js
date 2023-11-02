@@ -32,9 +32,11 @@ export default function Kategori({ navigation, route }) {
         __getTransaction();
     }, [])
 
+    const [user, setUser] = useState({});
     const __getTransaction = () => {
         getData('user').then(uu => {
 
+            setUser(uu);
             axios.post(apiURL + 'pengguna_list', {
                 fid_user: uu.id
             }).then(resPos => {
@@ -146,7 +148,7 @@ export default function Kategori({ navigation, route }) {
                         </> : <></>
                     }
 
-                    {item.judul == 'Surat' ?
+                    {item.judul == 'Surat' && (user.username == 'lurah' || user.username == 'sekkel') ?
                         <>
 
                             <View>
